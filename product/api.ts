@@ -15,7 +15,13 @@ export default {
                 Papa.parse(response.data, {
                     header: true,
                     complete: results => {
-                        return resolve(results.data as Product[])
+                        const products = results.data as Product[]
+                        return resolve (
+                            products.map((product) => ({
+                                ...product,
+                                price: Number(product.price)
+                            }))
+                        )
                     },
                     error: (error) => {
                         return reject(error.message)
