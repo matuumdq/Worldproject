@@ -4,9 +4,10 @@ import Papa from 'papaparse'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    list: async(): Promise<Product[]> => {
+    list: async(page: number): Promise<Product[]> => {
+        const startIndex = (page - 1) * 5;
         return axios.get(
-            `https://docs.google.com/spreadsheets/d/e/2PACX-1vSThQAPJxZnYVlWqv-XahTcj1wLhyJ10ZKuyOonk-lEX6CPS7cwQES1HLLetuOr8alUXcQVSmbhsz4l/pub?output=csv`, 
+            `https://docs.google.com/spreadsheets/d/e/2PACX-1vSThQAPJxZnYVlWqv-XahTcj1wLhyJ10ZKuyOonk-lEX6CPS7cwQES1HLLetuOr8alUXcQVSmbhsz4l/pub?output=csv&start=${startIndex}`, 
             {
                 responseType: 'blob'
             }
