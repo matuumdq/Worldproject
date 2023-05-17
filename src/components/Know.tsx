@@ -1,18 +1,43 @@
 import Link from "next/link"
+import { Parallax } from "react-parallax"
 
 const KnowUs: React.FC = () => {
     return(
-        <div className="flex max-w-screen-lg flex-col mx-3 md:mx-auto mt-6 md:flex-row justify-center items-center h-auto">
-            <img src="https://images.pexels.com/photos/3678428/pexels-photo-3678428.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="md:w-1/2 rounded-md" />
-            <div className="bg-black/60 py-4 -translate-y-2 md:translate-y-0 rounded-b-lg md:rounded-bl-none md:rounded-r-lg md:py-4">
-            <div className="text-center">
-                <Link href='/tienda'>
-                <button className="bg-secondary-bg cursor-default uppercase mb-5 text-primary-bg hover:scale-105 hover:border hover:border-black font-semibold ease-in duration-300 px-10 py-1 rounded-lg">Conoce nuestra Historia</button> </Link>
+    //     <div className="flex flex-col mt-6 md:flex-row justify-center items-center h-auto">
+    //         <Parallax blur={1} bgImage="https://images.pexels.com/photos/3678428/pexels-photo-3678428.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"  bgImageAlt="the cat" strength={400} className="w-full">
+    //     <div className="w-full min-h-[20vh] md:min-h-[40vh] flex justify-center items-center">
+    //         <div className="bg-secondary-bg/20 flex flex-col justify-center items-center gap-4 md:w-2/3 mx-auto md:rounded-lg h-auto text-white">
+    //             <h2 className="w-full text-center uppercase font-light text-xl md:text-6xl pt-4">Nosotros</h2>
+    //                 <p className="text-base mx-4 font-mono md:w-2/3">
+    //                     ¡Bienvenidos a nuestra armería fundada en 1968! Ofrecemos productos de alta calidad y un servicio excepcional. Descubre nuestra amplia selección de armas para caza, tiro deportivo y seguridad personal. ¡Gracias por elegirnos!
+    //                 </p>
+    //                 <div className="text-center">
+    //                     <Link href='/tienda'>
+    //                     <button className="bg-secondary-bg cursor-default uppercase mb-5 text-primary-bg hover:scale-105 hover:border hover:border-black font-semibold ease-in duration-300 px-10 py-1 rounded-lg">Conoce nuestra Historia</button> </Link>
+    //                 </div>
+    //         </div>
+                
+    //     </div>
+    //   </Parallax>
+    // </div>
+    <div className="flex flex-col mt-6 md:flex-row justify-center items-center h-auto">
+        <Parallax blur={1} bgImage="https://images.pexels.com/photos/3678428/pexels-photo-3678428.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"  bgImageAlt="the cat" strength={400} className="w-full ">
+            <div className="w-full min-h-[20vh] md:min-h-[40vh] flex justify-center items-center bg-black/70">
+                <div className="flex flex-col justify-center items-center gap-4 md:w-2/3 mx-auto md:rounded-lg h-auto text-white">
+                    <h2 className="w-full text-center uppercase font-light text-xl md:text-6xl pt-4">Nosotros</h2>
+                        <p className="text-base mx-4 font-mono text-center md:w-2/3">
+                        ¡Bienvenidos a nuestra armería fundada en 1968! Ofrecemos productos de alta calidad y un servicio excepcional. Descubre nuestra amplia selección de armas para caza, tiro deportivo y seguridad personal. ¡Gracias por elegirnos!
+                        </p>
+                        <div className="text-center">
+                            <Link href='/tienda'>
+                            <button className="border border-secondary-bg uppercase mb-5 text-white hover:scale-105 font-semibold ease-in duration-300 px-10 py-1 rounded-full">leer mas</button> </Link>
+                        </div>
+                </div>
+                    
             </div>
-            <p className="text-sm mx-4 text-secondary-bg">¡Bienvenidos a nuestra armería! Fundada en 1968, nos enorgullece ser una empresa de larga trayectoria en el mundo de las armas. A lo largo de los años, hemos brindado a nuestros clientes un servicio excepcional y productos de la más alta calidad. Nuestra pasión por las armas y nuestro compromiso con la seguridad nos ha convertido en un referente en el mercado. Ya sea que estés buscando armas para caza, tiro deportivo o seguridad personal, aquí encontrarás una amplia selección para satisfacer tus necesidades. Explora nuestra página y descubre la fascinante historia de nuestra armería y la variedad de productos que ofrecemos. ¡Gracias por elegirnos!</p>
             
-            </div>
-        </div>
+        </Parallax>
+    </div>
     )
 }
 
