@@ -47,50 +47,40 @@ const IndexRoute: React.FC<Props> = ({products}) => {
     }
 
   return (
-    <div className="bg-slate-950 py-5 min-h-screen">
+    <div className="bg-primary-bg py-5 min-h-screen">
         <button 
-            className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ease-in-out duration-300'
+            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
             onClick={()=> setProd(products)}
         >
             Todo
         </button>
         <button 
-            className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ease-in-out duration-300'
+            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
             onClick={()=> filterType('CEPILLOS')}
         >
             Cepillos
         </button>
         <button 
-            className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ease-in-out duration-300'
+            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
             onClick={()=> filterType('pistola')}
         >
             Pistolas
         </button>
         <button 
-            className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ease-in-out duration-300'
+            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
             onClick={()=> filterType('escopetas')}
         >
             Escopetas
         </button>
-        {/* <div className="flex gap-6 bg-black h-screen">
-            {prod.map((product) => (
-                <div key={product.id}>
-                    <div className="bg-red-400 text-white" >{product.title}</div>
-                    <div>${product.price}</div>
-                    {product.description !== '' && <div>{product.description}</div> }
-                    <Image src={product.image} width={100} height={100} className="w-auto max-h-44" alt="" />
-                    <button className="bg-white text-black">Agregar</button>
-                </div>
-            ))}
-        </div> */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pt-4 mx-5 lg:max-w-screen-lg md:mx-auto'>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 mx-5 lg:max-w-screen-lg md:mx-auto'>
         {prod.map((item) =>
             item.id === '' || item.title === '' ? null : (
-                <div key={item.id} className='border border-slate-600 shadow-sm hover:shadow-none hover:border-green-400 rounded-md hover:scale-105 duration-300 flex flex-col items-center bg-black'>
+                <div key={item.id} onClick={() => setSelectedProd(item)} className='bg-other-200 shadow-sm hover:shadow-none hover:border-green-400 rounded-md hover:scale-105 duration-300 flex flex-col items-center'>
                  <motion.img layoutId={item.image} src={item.image} alt={item.title} className='w-full h-[200px] object-scale-down bg-white rounded-t-md' />   
-                 <button className="-translate-y-3.5 bg-white rounded-full p-0" onClick={() => setSelectedProd(item)}><AiFillInfoCircle size={32} color="green"/></button>
+                 <button className="-translate-y-3.5 bg-white rounded-full p-0 text-other-200" ><AiFillInfoCircle size={32} /></button>
                 <div className='flex flex-col items-center justify-center px-2 py-4 -translate-y-3'>
-                    <p className='font-bold text-white'>{item.title.toUpperCase()}</p>
+                    <p className='font-bold text-secondary-bg'>{item.title.toUpperCase()}</p>
                 {item.price !== 0 && 
                     <div className="text-white">$ {item.price}</div>
                 }
@@ -119,19 +109,18 @@ const IndexRoute: React.FC<Props> = ({products}) => {
                                 <h5 className="font-bold pb-3">${selectedProd.price}</h5>
                                 <motion.img src={selectedProd.image} alt={selectedProd.title} className='w-full h-[200px]  object-scale-down bg-white rounded-md md:rounded-sm' />   
                             </div>
-                            <div className="mx-5 h-auto overflow-y-auto flex flex-col md:w-1/2 ">
+                            <div className="mx-5 h-auto overflow-y-auto flex flex-col w-full md:w-1/2 ">
                                 <h3 className="uppercase font-semibold md:text-2xl pb-2 mx-auto">Caracteristicas: </h3>
                                 {selectedProd.description.split('. ').map((punto, index) => (
-                                    <p className="font-thin text-xs md:text-base lg:mx-10" key={index}>
+                                    <p className="font-thin text-xs md:text-base mx-10" key={index}>
                                         {punto}
                                     </p>
                                 ))}
-                                {(selectedProd.disponible !== '' && selectedProd.disponible === 'si')
-                                    && <button className="bg-green-400 uppercase px-5 py-1 mt-5 text-left w-auto mx-auto rounded-md cursor-default">En stock</button>
+                                {selectedProd.disponible !== ''
+                                    && 
+                                            <p className="flex items-center justify-start gap-2 cursor-default mt-2 mx-10">Estado: {selectedProd.disponible === 'si' ? <p className="text-md text-lime-500 font-bold">En Stock</p> : <p className="text-md text-red-600 font-bold">Sin Stock</p>}</p>  
                                 }
-                                {(selectedProd.disponible !== '' && selectedProd.disponible === 'no')
-                                    && <button className="bg-red-600 uppercase px-5 py-1 mt-5 text-left w-auto mx-auto rounded-md cursor-default">sin stock</button>
-                                }
+                              
                             </div>
                         </div>
                         <div className="max-w-full mx-10 md:mx-48 border border-white"></div>
@@ -149,10 +138,6 @@ const IndexRoute: React.FC<Props> = ({products}) => {
                             {renderModal(selectedProd.title)}
                         </div>
                         
-                        {/* <motion.img src={selectedProd.image} alt={selectedProd.title} className="w-auto mx-auto max-h-11" />
-                        <p className="text-xl text-center">{selectedProd.title}</p>
-                        <p className="text-sm w-full md:w-1/2">{selectedProd.description}</p>
-                        <button className="text-green">ir a wpp</button> */}
                     </motion.div>
                 }
             </AnimatePresence>

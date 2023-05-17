@@ -1,21 +1,23 @@
-import { GetStaticProps } from "next"
-import { Product } from "../../product/types"
-import api from "../../product/api"
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
-import { AiFillInfoCircle, AiFillCloseCircle } from 'react-icons/ai'
-import { BsWhatsapp } from 'react-icons/bs'
-import Navbar from "@/components/Navbar"
+import Provedores from "@/components/Provedores"
+import KnowUs from "@/components/Know"
+import Shop from "@/components/Shop"
+import Header from "@/components/Header"
+import Midbar from "@/components/Midbar"
 
-interface Props {
-    products: Product[]
-}
 
-const IndexRoute: React.FC<Props> = () => {
+const IndexRoute: React.FC = () => {
     
   return (
-    <div>
-        home
+    <div className="bg-[url('https://media.istockphoto.com/id/1308490645/es/v%C3%ADdeo/patr%C3%B3n-abstracto-de-hex%C3%A1gono-oscuro-en-estilo-de-tecnolog%C3%ADa-de-fondo-de-ne%C3%B3n-naranja-concepto.jpg?s=640x640&k=20&c=iH4xnfN4HknavhbJTkdzguxVRndHLM3ZJRN2EaAzQVg=')] ">
+        <Header />
+      <div className="bg-white/40 max-w-screen-xl mx-auto ">
+        <Provedores />
+        <KnowUs />
+        <Shop />
+        <Midbar />
+        <Provedores />
+      </div>
+
     </div>
   )
 }
