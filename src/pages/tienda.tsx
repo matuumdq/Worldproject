@@ -20,6 +20,7 @@ const IndexRoute: React.FC<Props> = ({products}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [prod, setProd] = useState(products)
     const [selectedProd, setSelectedProd] = useState(null)
+    const [category, setCategory] = useState('')
 
     // const loadProducts = async (page: number) => {
     //     try {
@@ -39,6 +40,7 @@ const IndexRoute: React.FC<Props> = ({products}) => {
     //   };
 
     const filterType = (category: string) => {
+        setCategory(category)
         setProd(
             products.filter((item: { category: any }) => {
                 return item.category === category
@@ -48,31 +50,74 @@ const IndexRoute: React.FC<Props> = ({products}) => {
 
   return (
     <div className="bg-primary-bg py-5 min-h-screen">
-        <button 
-            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
-            onClick={()=> setProd(products)}
-        >
-            Todo
-        </button>
-        <button 
-            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
-            onClick={()=> filterType('CEPILLOS')}
-        >
-            Cepillos
-        </button>
-        <button 
-            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
-            onClick={()=> filterType('pistola')}
-        >
-            Pistolas
-        </button>
-        <button 
-            className='m-1 bg-other-200 text-secondary-bg hover:scale-105 px-4 py-1 rounded-md font-semibold ease-in-out duration-300'
-            onClick={()=> filterType('escopetas')}
-        >
-            Escopetas
-        </button>
+        {category==='' ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:max-w-screen-lg mx-auto">
+            <div
+                className="flex items-center justify-center md:col-span-2 h-32 bg-[url('https://w0.peakpx.com/wallpaper/477/450/HD-wallpaper-steyr-aug-assault-rifle-armee-universal-gewehr-nato-bullpup-assault-rifle-stg-77-sturmgewehr-77-weapons.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> setProd(products)}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">ver todos</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://w0.peakpx.com/wallpaper/549/154/HD-wallpaper-m1911-colt-gun-weapon.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('pistola')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">pistolas</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://images6.alphacoders.com/314/314786.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('escopetas')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">Escopetas</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://images5.alphacoders.com/283/283267.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('escopetas')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">fusiles</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://w0.peakpx.com/wallpaper/61/145/HD-wallpaper-m4-carbine-assault-rifle-m4-rifle-gun-assault-rifle-weapon-carbine.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('escopetas')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">carabinas</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://w0.peakpx.com/wallpaper/612/442/HD-wallpaper-bowie-knife-graphy-bowie-abstract-knife.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('escopetas')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">cuchillos</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://p4.wallpaperbetter.com/wallpaper/148/708/21/weapons-s-colt-wallpaper-preview.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('escopetas')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">fundas</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sniperscope.jpg/1200px-Sniperscope.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('CEPILLOS')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">miras</p>
+            </div>
+            <div 
+                className="flex items-center justify-center h-32 bg-[url('https://m.media-amazon.com/images/S/aplus-media/sc/19854c15-ab01-481b-b197-3d5d85484512.__CR0,0,970,600_PT0_SX970_V1___.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> filterType('escopetas')}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">limpieza</p>
+            </div>
+        </div>
+        ) : ( 
+            <div
+                className="flex items-center justify-center max-w-screen-lg mx-auto h-32 bg-[url('https://w0.peakpx.com/wallpaper/477/450/HD-wallpaper-steyr-aug-assault-rifle-armee-universal-gewehr-nato-bullpup-assault-rifle-stg-77-sturmgewehr-77-weapons.jpg')] bg-center bg-cover bg-no-repeat"
+                onClick={()=> {setProd(products), setCategory('')}}
+            >
+                <p className="mx-auto text-white uppercase text-4xl font-bold">ver todos</p>
+            </div>
+        )}
+        
 
+            <p className="text-xl text-white"> Categoria: {() => filterType()} {category === '' ? 'Todos' : category} </p>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 mx-5 lg:max-w-screen-lg md:mx-auto'>
         {prod.map((item) =>
             item.id === '' || item.title === '' ? null : (
@@ -141,32 +186,6 @@ const IndexRoute: React.FC<Props> = ({products}) => {
                     </motion.div>
                 }
             </AnimatePresence>
-        
-
-            {/*  <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4 mx-5'>
-                {prod.map((item)=> (
-                    <motion.div onClick={()=>setSelectedProd(item)} key={item.id} layoutId={item.id} className='border shadow-lg rounded-lg hover:scale-105 duration-300' >
-                        <motion.img  src={item.image} alt={item.title} className='w-full h-[200px] object-cover rounded-t-lg cursor-pointer'/>
-                        <div className='flex justify-between px-2 py-4'>
-                            <p className='font-bold'>{item.title.toUpperCase()}</p>
-                            <p>
-                                <span className='bg-orange-500 text-white p-1 rounded-lg'>${item.price}</span>
-                            </p>
-                        </div> 
-                        <motion.h5>{item.title}</motion.h5>
-                        <motion.h2>{item.description}</motion.h2>
-                    </motion.div>
-                ) )} 
-            </div>
-            <AnimatePresence>
-                {selectedProd && (
-                    <motion.div layoutId={selectedProd} className="bg-white">
-                    <motion.h5 className="text-black">{selectedProd.title}</motion.h5>
-                    <motion.h2 className="text-black">{selectedProd.description}</motion.h2>
-                    <motion.button onClick={() => setSelectedProd(null)} />
-                    </motion.div>
-                )}
-            </AnimatePresence> */}
     </div>
   )
 }
